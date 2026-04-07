@@ -38,7 +38,7 @@ export const testimonials = [
 
 function VoiceScene({ testimonial, index }: { testimonial: typeof testimonials[0], index: number }) {
   const ref = useRef<HTMLDivElement>(null)
-  
+
   // Track scroll exactly when this specific quote enters and leaves the viewport
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -47,7 +47,7 @@ function VoiceScene({ testimonial, index }: { testimonial: typeof testimonials[0
 
   // Smoothly fade in and out. Peak opacity in the center.
   const opacity = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.1, 1, 1, 0.1])
-  
+
   // Blur out when it's entering or leaving. Sharp in the center.
   const blurValue = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [15, 0, 0, 15])
   const filter = useMotionTemplate`blur(${blurValue}px)`
@@ -59,11 +59,11 @@ function VoiceScene({ testimonial, index }: { testimonial: typeof testimonials[0
   const isLeft = index % 2 === 0
 
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       className="min-h-[60vh] md:min-h-[80vh] flex items-center relative z-10 w-full py-20"
     >
-      <motion.div 
+      <motion.div
         style={{ opacity, filter, y }}
         className={`w-full max-w-[900px] px-6 md:px-12 ${isLeft ? "mr-auto text-left" : "ml-auto text-right md:text-left"}`}
       >
@@ -71,8 +71,13 @@ function VoiceScene({ testimonial, index }: { testimonial: typeof testimonials[0
           "{testimonial.quote}"
         </p>
 
-        <div className={`mt-auto flex flex-col ${isLeft ? "items-start" : "items-end md:items-start"}`}>
-          <div className="w-12 h-px bg-primary/40 mb-6" />
+        <div className={`mt-auto flex flex-col gap-4 ${isLeft ? "items-start" : "items-end md:items-start"}`}>
+          {/* Client Avatar */}
+          <div className={`w-12 h-12 rounded-full ${(testimonial as any).bgColor} text-white flex items-center justify-center font-serif font-bold text-sm`}>
+            {(testimonial as any).initials}
+          </div>
+
+          <div className="w-12 h-px bg-primary/40 mb-2" />
           <p className="font-sans text-sm md:text-lg font-bold text-primary tracking-[0.2em] uppercase">
             {testimonial.name}
           </p>

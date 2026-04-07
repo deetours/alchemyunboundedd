@@ -305,7 +305,7 @@ export default function AboutPage() {
                       {item.stage} — {item.title}
                     </span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none">
+                  <ScrollReveal variant="fade-scale">
                     <p className="text-foreground text-2xl md:text-4xl lg:text-5xl font-serif leading-[1.3] tracking-tight">
                       {item.description}
                     </p>

@@ -15,6 +15,8 @@ import { ImmersiveRouting } from "@/components/immersive-routing"
 import { InteractiveVoices } from "@/components/interactive-voices"
 import { Section, Container } from "@/components/ui/section"
 import { Magnetic } from "@/components/magnetic"
+import { CTACeremony } from "@/components/ui/cta-ceremony"
+import { ExitIntentPopup } from "@/components/exit-intent-popup"
 
 const homeTestimonials = [
   {
@@ -22,12 +24,16 @@ const homeTestimonials = [
     name: "Kapildev Verma",
     role: "Head - Client Servicing, Investment Firm",
     location: "India",
+    initials: "KV",
+    bgColor: "bg-blue-600"
   },
   {
     quote: "Each of our sessions is the discovery of a new location on the map of my own inner world.",
     name: "Katerina Svetkova",
     role: "Creative Director & Dancer",
     location: "Russia",
+    initials: "KS",
+    bgColor: "bg-purple-600"
   },
   {
     quote:
@@ -35,18 +41,24 @@ const homeTestimonials = [
     name: "Katy Haldiman",
     role: "Healthcare Professional",
     location: "US",
+    initials: "KH",
+    bgColor: "bg-teal-600"
   },
   {
     quote: "He coaches with his heart, life wisdom, and originality in a way you feel completely taken care of.",
     name: "Jill Badonsky",
     role: "Creator, Kaizen-Muse Creativity Coaching",
     location: "US",
+    initials: "JB",
+    bgColor: "bg-amber-600"
   },
   {
     quote: "Harish's approach instilled in me a sense of body awareness and self-confidence.",
     name: "Bharath",
     role: "Movement Practitioner",
     location: "US",
+    initials: "B",
+    bgColor: "bg-green-600"
   },
 ]
 
@@ -140,6 +152,18 @@ export default function HomePage() {
             background: ambientBg,
             willChange: "background",
             transform: "translateZ(0)",
+          }}
+        />
+
+        {/* PAGE PROGRESS INDICATOR */}
+        <motion.div
+          className="fixed top-0 right-6 w-px h-screen z-40 pointer-events-none"
+          style={{
+            scaleY: scrollYProgress,
+            background: "linear-gradient(to bottom, transparent, oklch(0.45 0.08 145 / 0.5))",
+            transformOrigin: "top",
+            opacity: 0.6,
+            willChange: "transform"
           }}
         />
 
@@ -474,7 +498,7 @@ export default function HomePage() {
                     01 — The Architecture of Success
                   </span>
                 </ScrollReveal>
-                <ScrollReveal direction="none">
+                <ScrollReveal variant="fade-scale">
                   <p className="text-foreground text-2xl md:text-4xl lg:text-5xl font-serif leading-[1.3] tracking-tight">
                     "A degree from Purdue. A career in consulting. Competence that was visible, legible, rewarded. And inside — a silence that echoed. Not depression. Something more precise: the feeling of being completely present to my own absence."
                   </p>
@@ -488,7 +512,7 @@ export default function HomePage() {
                     02 — The Body Spoke First
                   </span>
                 </ScrollReveal>
-                <ScrollReveal direction="none" delay={0.1}>
+                <ScrollReveal variant="fade-scale" delay={0.1}>
                   <p className="text-foreground text-2xl md:text-4xl lg:text-5xl font-serif leading-[1.3] tracking-tight">
                     "Anxiety arrived not as thought but as physical fact. A voice — not loud, not dramatic — that said: you are surviving this. I had not yet learned to listen to what my body already knew."
                   </p>
@@ -502,7 +526,7 @@ export default function HomePage() {
                     03 — The Weight of Pretending
                   </span>
                 </ScrollReveal>
-                <ScrollReveal direction="none" delay={0.1}>
+                <ScrollReveal variant="fade-scale" delay={0.1}>
                   <p className="text-foreground text-2xl md:text-4xl lg:text-5xl font-serif leading-[1.3] tracking-tight">
                     "I left the career. In the ten months that followed, I released a hundred pounds — not through discipline or plan, but through something stranger and more true: I stopped carrying the weight of a life that wasn't mine. The body holds everything we haven't yet had the courage to set down."
                   </p>
@@ -524,24 +548,13 @@ export default function HomePage() {
         {/* MID-PAGE CTA — Ceremony: horizontal rules + eyebrow label          */}
         {/* ─────────────────────────────────────────────────────────────────── */}
         <Section size="default" className="relative z-10 border-t border-foreground/[0.07]">
-          <Container width="prose" className="text-center">
-            <ScrollReveal>
-              <div className="flex items-center gap-8 mb-10 justify-center">
-                <div className="h-px flex-1 max-w-[80px] bg-foreground/[0.07]" />
-                <span className="font-sans text-[9px] tracking-[0.5em] uppercase text-foreground/30">
-                  A beginning
-                </span>
-                <div className="h-px flex-1 max-w-[80px] bg-foreground/[0.07]" />
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <Magnetic strength={0.4}>
-                <Button variant="brand-outline" size="xl" asChild>
-                  <Link href="/begin">Open a conversation</Link>
-                </Button>
-              </Magnetic>
-            </ScrollReveal>
-          </Container>
+          <CTACeremony
+            label="A beginning"
+            buttonText="Open a conversation"
+            href="/begin"
+            variant="brand-outline"
+            magneticStrength={0.4}
+          />
         </Section>
 
         {/* ─────────────────────────────────────────────────────────────────── */}
@@ -568,13 +581,13 @@ export default function HomePage() {
           </div>
 
           <Container width="narrow">
-            <ScrollReveal>
+            <ScrollReveal variant="fade-up">
               <p className="font-serif text-3xl md:text-4xl text-muted-foreground mb-16 italic font-light">
                 You did not find this page by accident.
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.2}>
+            <ScrollReveal variant="fade-scale" delay={0.2}>
               <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
                 <Magnetic strength={0.3}>
                   <Button variant="brand-primary" size="xl" asChild>
@@ -591,6 +604,9 @@ export default function HomePage() {
             </ScrollReveal>
           </Container>
         </Section>
+
+        {/* EXIT INTENT POPUP */}
+        <ExitIntentPopup />
 
       </motion.div>
       <Footer />

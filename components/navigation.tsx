@@ -24,7 +24,7 @@ export function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
-      setShowCTA(window.scrollY > 100)
+      setShowCTA(window.scrollY > 30)
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)

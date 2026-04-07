@@ -374,7 +374,7 @@ export default function LifeCoachingPage() {
                   <ScrollReveal>
                     <span className="font-serif text-6xl md:text-8xl text-primary/[0.08] lg:sticky lg:top-40 block italic">01</span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none">
+                  <ScrollReveal variant="fade-scale">
                     <p className="text-foreground text-3xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.25] tracking-tight">
                       A space where you can finally speak the things you haven't said aloud—without judgment, without fixing.
                     </p>
@@ -385,7 +385,7 @@ export default function LifeCoachingPage() {
                   <ScrollReveal>
                     <span className="font-serif text-6xl md:text-8xl text-primary/[0.08] lg:sticky lg:top-40 block italic">02</span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none" delay={0.1}>
+                  <ScrollReveal variant="fade-scale" delay={0.1}>
                     <p className="text-foreground text-3xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.25] tracking-tight">
                       Conversations that illuminate blind spots gently, helping you see patterns you've been living unconsciously.
                     </p>
@@ -396,7 +396,7 @@ export default function LifeCoachingPage() {
                   <ScrollReveal>
                     <span className="font-serif text-6xl md:text-8xl text-primary/[0.08] lg:sticky lg:top-40 block italic">03</span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none" delay={0.1}>
+                  <ScrollReveal variant="fade-scale" delay={0.1}>
                     <p className="text-foreground text-3xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.25] tracking-tight">
                       A reconnection to your own inner wisdom, the quiet knowing that has always been there, waiting.
                     </p>

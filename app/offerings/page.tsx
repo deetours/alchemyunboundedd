@@ -199,7 +199,7 @@ export default function OfferingsPage() {
                   CLARITY
                 </span>
               </div>
-              <ScrollReveal direction="none">
+              <ScrollReveal variant="fade-scale">
                 <h3 className="font-serif text-3xl text-foreground mb-4">Clarity</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Understanding what is true before trying to fix or optimize anything.
@@ -214,7 +214,7 @@ export default function OfferingsPage() {
                   STRUCTURE
                 </span>
               </div>
-              <ScrollReveal direction="none" delay={0.1}>
+              <ScrollReveal variant="fade-scale" delay={0.1}>
                 <h3 className="font-serif text-3xl text-foreground mb-4">Structure</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Building systems that support your growth without fragmenting who you are.
@@ -229,7 +229,7 @@ export default function OfferingsPage() {
                   EMBODIMENT
                 </span>
               </div>
-              <ScrollReveal direction="none" delay={0.2}>
+              <ScrollReveal variant="fade-scale" delay={0.2}>
                 <h3 className="font-serif text-3xl text-foreground mb-4">Embodiment</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Transformation must live in the body, nervous system, and daily lived experience.

@@ -308,7 +308,7 @@ export default function CreativityCoachingPage() {
                   <ScrollReveal>
                     <span className="font-serif text-6xl md:text-8xl text-primary/[0.08] lg:sticky lg:top-40 block italic">01</span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none">
+                  <ScrollReveal variant="fade-scale">
                     <p className="text-foreground text-3xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.25] tracking-tight">
                       Permission to create without the weight of perfection. Space to experiment, fail beautifully, and begin again.
                     </p>
@@ -319,7 +319,7 @@ export default function CreativityCoachingPage() {
                   <ScrollReveal>
                     <span className="font-serif text-6xl md:text-8xl text-primary/[0.08] lg:sticky lg:top-40 block italic">02</span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none" delay={0.1}>
+                  <ScrollReveal variant="fade-scale" delay={0.1}>
                     <p className="text-foreground text-3xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.25] tracking-tight">
                       Dissolving the blocks that keep your creative energy stuck—fear, comparison, the inner critic's relentless voice.
                     </p>
@@ -330,7 +330,7 @@ export default function CreativityCoachingPage() {
                   <ScrollReveal>
                     <span className="font-serif text-6xl md:text-8xl text-primary/[0.08] lg:sticky lg:top-40 block italic">03</span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none" delay={0.1}>
+                  <ScrollReveal variant="fade-scale" delay={0.1}>
                     <p className="text-foreground text-3xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.25] tracking-tight">
                       Work that flows from authenticity rather than effort. A renewed relationship with your creative self.
                     </p>

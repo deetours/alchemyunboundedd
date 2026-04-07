@@ -352,7 +352,7 @@ export default function VoicesPage() {
         <Container width="default">
           <div className="space-y-24">
             {voicesData.gallery.map((voice, idx) => (
-              <ScrollReveal key={idx} delay={idx * 0.1} direction="none">
+              <ScrollReveal key={idx} delay={idx * 0.1} variant="fade-scale">
                 <div
                   className={`${
                     voice.format === "A"
@@ -476,7 +476,7 @@ export default function VoicesPage() {
 
         <div className="space-y-16 max-w-3xl mx-auto">
           {voicesData.whispers.map((voice, idx) => (
-            <ScrollReveal key={idx} delay={idx * 0.2} direction="none">
+            <ScrollReveal key={idx} delay={idx * 0.2} variant="fade-scale">
               <div className={`${[0, 2, 4].includes(idx) ? "text-left" : "text-right ml-auto"}`}>
                 <p className="font-serif text-lg md:text-xl text-foreground/60 leading-relaxed italic mb-3">
                   "{voice.quote}"
@@ -507,7 +507,7 @@ export default function VoicesPage() {
 
         <Container width="default" className="space-y-24">
           {voicesData.movement.map((voice, idx) => (
-            <ScrollReveal key={idx} direction="none" delay={idx * 0.1}>
+            <ScrollReveal key={idx} variant="fade-scale" delay={idx * 0.1}>
               <div className="max-w-3xl">
                 {voice.power && idx === 0 && (
                   <p className="font-serif text-4xl md:text-6xl text-foreground leading-tight mb-6 italic">
@@ -551,7 +551,7 @@ export default function VoicesPage() {
 
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-12">
             {voicesData.countries.map((country, idx) => (
-              <ScrollReveal key={idx} delay={idx * 0.08} direction="none">
+              <ScrollReveal key={idx} delay={idx * 0.08} variant="fade-scale">
                 <p
                   className={`font-serif text-foreground/${
                     [0, 2, 4, 6].includes(idx) ? "70" : "50"

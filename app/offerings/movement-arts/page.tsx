@@ -296,7 +296,7 @@ export default function MovementArtsPage() {
                   <ScrollReveal>
                     <span className="font-serif text-6xl md:text-8xl text-primary/[0.08] lg:sticky lg:top-40 block italic">01</span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none">
+                  <ScrollReveal variant="fade-scale">
                     <p className="text-foreground text-3xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.25] tracking-tight">
                       Greater body awareness through gentle, exploratory movement sessions that honor your body's natural wisdom.
                     </p>
@@ -307,7 +307,7 @@ export default function MovementArtsPage() {
                   <ScrollReveal>
                     <span className="font-serif text-6xl md:text-8xl text-primary/[0.08] lg:sticky lg:top-40 block italic">02</span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none" delay={0.1}>
+                  <ScrollReveal variant="fade-scale" delay={0.1}>
                     <p className="text-foreground text-3xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.25] tracking-tight">
                       Emotional release held in tissues. Space for the body to speak what words cannot express.
                     </p>
@@ -318,7 +318,7 @@ export default function MovementArtsPage() {
                   <ScrollReveal>
                     <span className="font-serif text-6xl md:text-8xl text-primary/[0.08] lg:sticky lg:top-40 block italic">03</span>
                   </ScrollReveal>
-                  <ScrollReveal direction="none" delay={0.1}>
+                  <ScrollReveal variant="fade-scale" delay={0.1}>
                     <p className="text-foreground text-3xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.25] tracking-tight">
                       A felt sense of being at home in your own skin. Presence that grounds you in the here and now.
                     </p>
