@@ -53,7 +53,7 @@ function VoiceScene({ testimonial, index }: { testimonial: typeof testimonials[0
   const filter = useMotionTemplate`blur(${blurValue}px)`
 
   // Slight parallax upward movement as user scrolls down
-  const y = useTransform(scrollYProgress, [0, 1], [80, -80])
+  const y = useTransform(scrollYProgress, [0, 1], [40, -40])
 
   // Alternate alignment: Evens on the left, Odds on the right
   const isLeft = index % 2 === 0
@@ -61,7 +61,7 @@ function VoiceScene({ testimonial, index }: { testimonial: typeof testimonials[0
   return (
     <div 
       ref={ref} 
-      className="min-h-[70vh] flex items-center relative z-10 w-full"
+      className="min-h-[60vh] md:min-h-[80vh] flex items-center relative z-10 w-full py-20"
     >
       <motion.div 
         style={{ opacity, filter, y }}
@@ -91,7 +91,7 @@ export function InteractiveVoices() {
   // Scoped scroll tracking for the entire cinematic wrapper
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start 60%", "end 40%"]
+    offset: ["start 80%", "end 20%"]
   })
 
   // Dynamic lightswitch transitions to deep cinematic dark green

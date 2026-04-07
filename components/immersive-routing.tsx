@@ -46,16 +46,27 @@ const services = [
 
 export function ImmersiveRouting() {
   const containerRef = useRef<HTMLDivElement>(null)
-  
-  // Detect mobile
-  const [isMobile, setIsMobile] = useState(false)
-  
+
+  // Detect mobile with hydration safety
+  const [isMobile, setIsMobile] = useState<boolean | null>(null)
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024)
     checkMobile()
     window.addEventListener("resize", checkMobile)
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
+
+  // During SSR, render the mobile version to avoid hydration mismatch
+  if (isMobile === null) {
+    return (
+      <div className="w-full bg-background relative z-20">
+        <div className="py-24 text-center px-6">
+          <p className="font-serif text-2xl text-foreground/50 italic">Where are you right now?</p>
+        </div>
+      </div>
+    )
+  }
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
