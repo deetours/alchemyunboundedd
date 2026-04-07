@@ -11,119 +11,108 @@ import { ProgressiveForm } from "@/components/progressive-form"
 import { useRef } from "react"
 import Link from "next/link"
 
-export default function LeadershipCoachingPage() {
+export default function LeadershipElitePage() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll()
   
-  // Smooth scroll progress for the whole page
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
-
-  // Background color interpolation: Start bright/clinical, move to focus charcoal
-  const bgColor = useTransform(
-    smoothProgress, 
-    [0, 0.4, 0.8, 1], 
-    ["oklch(0.98 0.005 250)", "oklch(0.98 0.005 250)", "oklch(0.18 0.01 250)", "oklch(0.12 0.01 250)"]
-  )
-  
-  const textColor = useTransform(
-    smoothProgress,
-    [0, 0.7, 0.8, 1],
-    ["oklch(0.2 0.01 250)", "oklch(0.2 0.01 250)", "oklch(0.95 0.01 250)", "oklch(0.98 0.01 250)"]
-  )
+  // THE PRECISION ENVIRONMENT: 
+  // No random color shifts. No emotional gradients. 
+  // Stark, clinical off-white for maximum legibility and authority.
+  const bgColor = "oklch(0.99 0 0)"
+  const textColor = "oklch(0.15 0 0)"
+  const borderColor = "oklch(0.15 0 0 / 0.08)"
 
   return (
     <>
       <Navigation />
       
-      <motion.main
+      <main
         ref={containerRef}
-        className="relative min-h-screen transition-colors duration-1000"
+        className="relative min-h-screen font-sans selection:bg-primary/20 selection:text-primary"
         style={{ backgroundColor: bgColor, color: textColor }}
       >
         <div className="relative z-10">
 
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          {/* SCENE 1: THE BRIEFING — Sharp. Surgical. Immediate.                */}
+          {/* SCENE 1: THE BRIEFING — Surgical. Immediate. Apple Standard.       */}
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          <section className="min-h-screen flex flex-col items-center justify-center relative px-6 text-center">
-            <ScrollReveal>
-              <span className="font-sans text-[10px] tracking-[0.5em] uppercase text-primary mb-12 block font-bold">
-                Elite Leadership Coaching
-              </span>
-            </ScrollReveal>
+          <section className="min-h-screen flex flex-col items-center justify-center relative px-6 text-center border-b" style={{ borderColor }}>
+            <div className="max-w-4xl mx-auto">
+              <ScrollReveal>
+                <span className="font-sans text-[10px] tracking-[0.6em] uppercase text-primary mb-16 block font-bold">
+                  Dossier: Leadership Elite
+                </span>
+              </ScrollReveal>
 
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-              className="font-serif text-5xl md:text-7xl lg:text-9xl text-foreground leading-[0.9] tracking-tighter mb-16"
-            >
-              Clarity Under 
-              <br />
-              <span className="italic">Pressure.</span>
-            </motion.h1>
+              <motion.h1 
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                className="font-serif text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.85] tracking-tighter mb-16 font-medium"
+              >
+                Clarity Under 
+                <br />
+                <span className="italic font-light">Pressure.</span>
+              </motion.h1>
 
-            <ScrollReveal delay={0.4}>
-              <p className="font-sans text-lg md:text-xl text-foreground/60 max-w-xl mx-auto leading-relaxed tracking-wide mb-20">
-                A private space for founders and executives navigating the architecture of success and the internal costs of choice.
-              </p>
-            </ScrollReveal>
+              <ScrollReveal delay={0.3}>
+                <div className="w-16 h-px bg-primary/40 mx-auto mb-16" />
+                <p className="font-sans text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto leading-relaxed tracking-tight mb-20 font-light">
+                  A high-intelligence sounding board for those navigating the architecture of success and the internal costs of ultimate choice.
+                </p>
+              </ScrollReveal>
 
-            <ScrollReveal delay={0.6}>
-              <Magnetic strength={0.3}>
-                <Link href="#briefing" className="group flex flex-col items-center gap-6">
-                  <div className="w-px h-16 bg-primary/30 group-hover:bg-primary transition-all duration-700" />
-                  <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-foreground/40 font-bold group-hover:text-foreground">
-                    Begin the Briefing
-                  </span>
-                </Link>
-              </Magnetic>
-            </ScrollReveal>
+              <ScrollReveal delay={0.5}>
+                <Magnetic strength={0.2}>
+                  <Link href="#briefing" className="group flex flex-col items-center gap-8">
+                    <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-foreground/40 font-bold group-hover:text-primary transition-colors">
+                      Enter the Space
+                    </span>
+                    <div className="w-px h-12 bg-primary/20 group-hover:h-20 group-hover:bg-primary transition-all duration-700" />
+                  </Link>
+                </Magnetic>
+              </ScrollReveal>
+            </div>
           </section>
 
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          {/* SCENE 2: RECOGNITION — The isolation of the top.                    */}
+          {/* SCENE 2: AUDIT — Brutalist recognition. No emotional fluff.          */}
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          <Section id="briefing" size="lg" className="border-t border-foreground/[0.05]">
-            <Container width="default" className="grid lg:grid-cols-[1fr_1.5fr] gap-20 lg:gap-32">
+          <Section id="briefing" size="lg" className="border-b" style={{ borderColor }}>
+            <Container width="default" className="grid lg:grid-cols-[1fr_2fr] gap-20 lg:gap-32">
               <ScrollReveal>
                 <div className="lg:sticky lg:top-40">
-                  <h2 className="font-sans text-[10px] text-primary tracking-[0.4em] uppercase font-bold mb-8">
+                  <h2 className="font-sans text-[10px] text-primary tracking-[0.5em] uppercase font-bold mb-10">
                     The Reality
                   </h2>
-                  <p className="font-serif text-4xl text-foreground leading-tight italic">
-                    You are not stuck. 
+                  <p className="font-serif text-5xl text-foreground leading-[1.1] italic font-medium">
+                    The higher you climb, 
                     <br />
-                    You are overloaded.
+                    the thinner the air.
                   </p>
                 </div>
               </ScrollReveal>
 
-              <div className="space-y-32">
+              <div className="space-y-40">
                 {[
                   {
-                    title: "The Isolation",
-                    desc: "Responsibility without reciprocity. You carry the weight of decisions that affect thousands, with few to speak the absolute truth with."
+                    title: "Strategic Isolation",
+                    desc: "Responsibility without reciprocity. You carry the weight of decisions that affect many, often without a private space for the absolute, unfiltered truth."
                   },
                   {
-                    title: "The Performance",
-                    desc: "The constant need to be 'on'. You manage external expectations while internal static grows louder, eventually masking your primary intuition."
+                    title: "The Performance Gap",
+                    desc: "The constant need to be 'on'. You manage external expectations while internal static masquerades as clarity, eventually masking your primary intuition."
                   },
                   {
-                    title: "The Cost",
-                    desc: "Decision fatigue masked as discipline. Success has many metrics, but the one most often ignored is the internal inhabitation of your own life."
+                    title: "Decision Fatigue",
+                    desc: "Success has many metrics, but the one most often ignored is the internal inhabitation of your own life. Leading requires grounded intelligence, not just mental logic."
                   }
                 ].map((item, i) => (
                   <ScrollReveal key={i}>
-                    <div className="group">
-                      <span className="font-sans text-[11px] tracking-[0.3em] text-foreground/30 uppercase mb-6 block font-bold group-hover:text-primary transition-colors">
-                        0{i+1} — {item.title}
+                    <div className="group border-l border-primary/10 pl-12 py-4 hover:border-primary transition-colors duration-700">
+                      <span className="font-sans text-[11px] tracking-[0.4em] text-foreground/30 uppercase mb-8 block font-bold group-hover:text-primary">
+                        Component 0{i+1} — {item.title}
                       </span>
-                      <p className="font-serif text-2xl md:text-3xl text-foreground/80 leading-relaxed italic">
+                      <p className="font-sans text-2xl md:text-3xl text-foreground/80 leading-relaxed font-light tracking-tight">
                         {item.desc}
                       </p>
                     </div>
@@ -134,67 +123,41 @@ export default function LeadershipCoachingPage() {
           </Section>
 
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          {/* SCENE 3: THE REFRAME — What leadership actually is.                */}
+          {/* SCENE 3: THE FRAMEWORK — Structured, data-driven intelligence.      */}
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          <Section size="screen" className="flex items-center">
-            <Container width="narrow" className="text-center">
-              <LineReveal
-                as="h2"
-                reveal="blur"
-                lines={[
-                  "You don't need a tool.",
-                  "",
-                  "You need a lens.",
-                ]}
-                lineClassName="font-serif text-5xl md:text-7xl lg:text-[7rem] text-foreground leading-none tracking-tighter italic"
-              />
-              <ScrollReveal delay={0.8}>
-                <p className="mt-16 font-sans text-sm text-foreground/40 max-w-sm mx-auto tracking-widest leading-relaxed">
-                  CLARITY IS NOT A LUXURY. 
-                  <br />
-                  IT IS A STRATEGIC REQUIREMENT.
-                </p>
-              </ScrollReveal>
-            </Container>
-          </Section>
-
-          {/* ═══════════════════════════════════════════════════════════════════ */}
-          {/* SCENE 4: THE FRAMEWORK — Structured sessions.                      */}
-          {/* ═══════════════════════════════════════════════════════════════════ */}
-          <Section size="lg" className="bg-foreground/[0.02] border-y border-foreground/[0.05]">
+          <Section size="lg" className="border-b" style={{ borderColor }}>
             <Container width="default">
-              <ScrollReveal className="mb-32">
-                <h2 className="font-sans text-[10px] text-primary tracking-[0.4em] uppercase font-bold mb-8 text-center">
-                  The Protocol
+              <ScrollReveal className="mb-40">
+                <h2 className="font-sans text-[10px] text-primary tracking-[0.5em] uppercase font-bold mb-10 text-center">
+                  Executive Protocol
                 </h2>
-                <h3 className="font-serif text-4xl md:text-6xl text-foreground text-center italic">
-                  Deep Structural Conversations.
+                <h3 className="font-serif text-5xl md:text-7xl text-foreground text-center italic font-medium">
+                  Deep Structural Extraction.
                 </h3>
               </ScrollReveal>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+              <div className="grid md:grid-cols-3 gap-1px bg-foreground/10 border border-foreground/10">
                 {[
                   {
-                    step: "01",
                     title: "Truth Extraction",
                     desc: "Bypassing the narrative you tell others. Finding the sharp edges of where you actually are."
                   },
                   {
-                    step: "02",
                     title: "Pattern Mapping",
                     desc: "Recognizing the recursive behaviors that brought success—and the ones now preventing it."
                   },
                   {
-                    step: "03",
-                    title: "Integrated Presence",
-                    desc: "Returning the leader to the body. Leading from a place of grounded intelligence, not just mental logic."
+                    title: "Internal Authority",
+                    desc: "Returning the leader to the body. Leading from a place of grounded presence, not just reactiveness."
                   }
                 ].map((item, i) => (
                   <ScrollReveal key={i} delay={i * 0.1}>
-                    <div className="p-10 border border-foreground/[0.06] rounded-2xl bg-foreground/[0.01] hover:border-primary/20 transition-all duration-700 h-full flex flex-col">
-                      <span className="font-sans text-3xl font-bold text-primary/10 mb-8 block">{item.step}</span>
-                      <h4 className="font-serif text-2xl text-foreground mb-6 italic">{item.title}</h4>
-                      <p className="font-sans text-sm text-foreground/50 leading-relaxed tracking-wide">{item.desc}</p>
+                    <div className="p-16 bg-white hover:bg-foreground/[0.01] transition-all duration-700 h-full">
+                      <span className="font-sans text-xs tracking-[0.3em] font-bold text-primary mb-12 block uppercase">Stage {i+1}</span>
+                      <h4 className="font-serif text-3xl text-foreground mb-8 italic font-medium">{item.title}</h4>
+                      <p className="font-sans text-base text-foreground/50 leading-relaxed tracking-wide font-light">
+                        {item.desc}
+                      </p>
                     </div>
                   </ScrollReveal>
                 ))}
@@ -203,36 +166,39 @@ export default function LeadershipCoachingPage() {
           </Section>
 
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          {/* SCENE 5: TESTIMONY — One surgical voice.                           */}
+          {/* SCENE 4: TESTIMONY — Single surgical authority quote.              */}
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          <Section size="lg">
+          <Section size="lg" className="border-b" style={{ borderColor }}>
             <Container width="narrow" className="text-center">
               <ScrollReveal>
-                <div className="w-16 h-px bg-primary/20 mx-auto mb-16" />
-                <p className="font-serif text-3xl md:text-5xl text-foreground leading-snug italic mb-16">
-                  "Harish cut through my 'executive reasoning' in twenty minutes. He saw the pattern I had been successfully hiding even from myself for a decade."
+                <p className="font-serif text-4xl md:text-5xl text-foreground/80 leading-[1.3] italic mb-16 font-light">
+                  "Harish saw the pattern I had been successfully hiding—even from myself—for a decade. He cut through my executive reasoning in twenty minutes. This is surgery, not coaching."
                 </p>
-                <p className="font-sans text-xs font-bold text-primary tracking-[0.4em] uppercase">
-                  Founder & CEO — Tech Scale-up
-                </p>
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-8 h-px bg-primary/40" />
+                  <p className="font-sans text-xs font-bold text-primary tracking-[0.5em] uppercase">
+                    CEO — Global Tech Scale-up
+                  </p>
+                </div>
               </ScrollReveal>
             </Container>
           </Section>
 
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          {/* SCENE 6: CONVERSION — Private invitation.                          */}
+          {/* SCENE 5: THE THRESHOLD — Secure, private invitation.                */}
           {/* ═══════════════════════════════════════════════════════════════════ */}
-          <Section size="lg" className="border-t border-foreground/[0.05]">
+          <Section size="lg">
             <Container width="narrow">
               <ScrollReveal className="text-center mb-32">
-                <h2 className="font-sans text-[10px] text-primary tracking-[0.4em] uppercase font-bold mb-12">
-                  The Next Decision
+                <h2 className="font-sans text-[10px] text-primary tracking-[0.6em] uppercase font-bold mb-12">
+                  Initiate Strategic Partnership
                 </h2>
-                <h3 className="font-serif text-3xl md:text-5xl text-foreground italic">
-                  This is a high-trust conversation. 
-                  <br />
-                  No sales process. No pressure.
+                <h3 className="font-serif text-4xl md:text-6xl text-foreground italic font-medium">
+                  This is a high-trust conversation.
                 </h3>
+                <p className="mt-8 font-sans text-lg text-foreground/50 font-light">
+                  No sales process. Just a private channel to begin the work.
+                </p>
               </ScrollReveal>
 
               <div id="begin" className="w-full">
@@ -242,7 +208,7 @@ export default function LeadershipCoachingPage() {
           </Section>
 
         </div>
-      </motion.main>
+      </main>
       
       <Footer />
     </>
