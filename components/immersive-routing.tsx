@@ -1,9 +1,84 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { motion, useScroll, useTransform, useSpring } from "framer-motion"
+import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "framer-motion"
 import Link from "next/link"
 import { Magnetic } from "@/components/magnetic"
+
+// Mobile immersive card component with parallax and blur effects
+function MobileServiceCard({ service, index }: { service: any; index: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 80%", "end 20%"]
+  })
+
+  // Parallax upward motion as user scrolls
+  const y = useTransform(scrollYProgress, [0, 1], [80, -80])
+
+  // Blur in/out effect
+  const blurValue = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [8, 0, 0, 8])
+  const filter = useMotionTemplate`blur(${blurValue}px)`
+
+  // Opacity fade
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.3, 1, 1, 0.3])
+
+  // Scale effect
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 0.85])
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{
+        opacity,
+        filter,
+        y,
+        scale,
+        backgroundColor: service.color
+      }}
+      className="min-h-screen flex flex-col justify-center items-center text-center p-8 border-t border-foreground/[0.05] relative"
+    >
+      <motion.div className="flex flex-col items-center w-full">
+        <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-foreground/40 mb-12 block font-bold">
+          0{index + 1} — {service.subtitle}
+        </span>
+
+        <h2 className="font-serif text-4xl md:text-5xl text-foreground tracking-tight mb-8 leading-tight">
+          {service.title}
+        </h2>
+
+        <div className="space-y-3 mb-16 max-w-md">
+          {service.lines.map((line: string, idx: number) => (
+            <motion.p
+              key={idx}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1, duration: 0.6 }}
+              className="font-serif text-lg md:text-xl text-foreground/80 italic leading-relaxed"
+            >
+              {line}
+            </motion.p>
+          ))}
+        </div>
+
+        <Magnetic strength={0.2}>
+          <Link
+            href={service.url}
+            className="group flex flex-col items-center gap-4"
+          >
+            <div className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-all duration-500">
+              <span className="font-sans text-xs">→</span>
+            </div>
+            <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-foreground/50 group-hover:text-foreground transition-colors duration-500 font-bold">
+              {service.cta}
+            </span>
+          </Link>
+        </Magnetic>
+      </motion.div>
+    </motion.div>
+  )
+}
 
 const services = [
   {
@@ -71,29 +146,14 @@ export function ImmersiveRouting() {
 
   return (
     <>
-      {/* ═ MOBILE PARADIGM (Vertical Flow) ═ */}
+      {/* ═ MOBILE PARADIGM (Vertical Immersive) ═ */}
       <div className="w-full bg-background relative z-20 lg:hidden">
         <div className="py-24 text-center px-6">
           <p className="font-serif text-2xl text-foreground/50 italic">Where are you right now?</p>
         </div>
-        
+
         {services.map((service, i) => (
-          <div key={service.id} className="min-h-screen flex flex-col justify-center items-center text-center p-8 border-t border-foreground/[0.05]" style={{ backgroundColor: service.color }}>
-             <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-foreground/40 mb-12 block font-bold">
-                0{i + 1} — {service.subtitle}
-             </span>
-             <h2 className="font-serif text-5xl text-foreground tracking-tight mb-8">
-               {service.title}
-             </h2>
-             <div className="space-y-2 mb-16">
-               {service.lines.map((line, idx) => (
-                 <p key={idx} className="font-sans text-xl text-foreground/70 italic leading-relaxed">{line}</p>
-               ))}
-             </div>
-             <Link href={service.url} className="text-primary font-sans text-xs tracking-[0.2em] uppercase border-b border-primary/20 pb-2">
-               {service.cta} →
-             </Link>
-          </div>
+          <MobileServiceCard key={service.id} service={service} index={i} />
         ))}
       </div>
 
