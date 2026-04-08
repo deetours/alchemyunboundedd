@@ -112,40 +112,36 @@ export function Navigation() {
         </nav>
       </motion.header>
 
-      {/* ═ THE MOBILE FLOATING DOCK ═ */}
+      {/* ═ THE MOBILE FLOATING DOCK (ULTRA-PREMIUM) ═ */}
       <AnimatePresence>
         {dockVisible && (
           <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm md:hidden z-[9999]"
+            transition={{ type: "spring", stiffness: 350, damping: 30 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 w-max max-w-[92vw] md:hidden z-[9999] rounded-full bg-black/90 backdrop-blur-3xl border border-white/10 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.6)]"
           >
-            <div className="relative w-full rounded-2xl bg-background/70 backdrop-blur-2xl border border-white/10 shadow-2xl p-2 flex items-center overflow-x-auto overscroll-x-contain hide-scrollbar">
-               {navLinks.map((link) => {
+            {/* Inner scroll container clipping gracefully into the rounded outer shell */}
+            <div className="w-full flex items-center overflow-x-auto overscroll-x-contain hide-scrollbar p-1.5 space-x-1 rounded-full">
+               {navLinks.slice(1).map((link) => {
                  const isActive = pathname === link.href
                  return (
                    <Link
                      key={link.href}
                      href={link.href}
-                     className={`flex-none px-4 py-2.5 rounded-xl font-sans text-xs tracking-[0.15em] uppercase font-bold transition-all duration-300 ${
+                     className={`flex-none px-5 py-2.5 rounded-full font-sans text-[14px] leading-none tracking-wide transition-all duration-300 ${
                        isActive 
-                         ? "bg-white/10 text-primary shadow-sm" 
-                         : "text-foreground/40 active:text-foreground active:bg-white/5"
+                         ? "bg-white text-black font-semibold shadow-sm" 
+                         : "text-white/60 active:text-white font-medium"
                      }`}
                    >
                      {link.label}
                    </Link>
                  )
                })}
-               
-               {/* Spacer to allow full scroll access to the last item */}
-               <div className="w-2 flex-none" aria-hidden="true" />
+               <div className="w-1 flex-none" aria-hidden="true" /> {/* Micro spacer */}
             </div>
-            
-            {/* Soft glow shadow underneath the dock */}
-            <div className="absolute -inset-2 bg-primary/20 blur-2xl -z-10 rounded-full opacity-30 pointer-events-none" />
           </motion.div>
         )}
       </AnimatePresence>
